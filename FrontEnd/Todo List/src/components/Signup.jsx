@@ -4,6 +4,8 @@ import { useState } from "react";
 
 function Signup() {
     const [msg,setMsg] = useState("");
+    const navigate = useNavigate();
+    
     function signup(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
@@ -13,6 +15,7 @@ function Signup() {
       axios.post("https://todo-list-eogs.onrender.com/signup", urlEncodedData, { withCredentials: true })
       .then((resolve)=>{
         console.log(resolve.data.msg);
+        navigate("/login");
       })
       .catch((err)=>{
         console.log(err.response.data.msg);
