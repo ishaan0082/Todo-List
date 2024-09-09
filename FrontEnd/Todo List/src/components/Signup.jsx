@@ -1,18 +1,22 @@
 import axios from "axios";
 import "../../public/Signup.css"
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function Signup() {
     const [msg,setMsg] = useState("");
+    const navigate = useNavigate();
+
     function signup(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
         const formDataObject = Object.fromEntries(formData.entries());
         const urlEncodedData = new URLSearchParams(formDataObject);
 
-      axios.post("https://todo-list-eogs.onrender.com/signup", urlEncodedData, { withCredentials: true })
+      axios.post("http://localhost:3000/signup", urlEncodedData, { withCredentials: true })
       .then((resolve)=>{
         console.log(resolve.data.msg);
+        navigate("/login");
       })
       .catch((err)=>{
         console.log(err.response.data.msg);
