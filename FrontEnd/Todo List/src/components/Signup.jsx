@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 function Signup() {
     const [msg,setMsg] = useState("");
     const navigate = useNavigate();
-
+    
     function signup(event) {
         event.preventDefault();
         const formData = new FormData(event.target);
